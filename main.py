@@ -14,4 +14,4 @@ def main(json_file_path):
     print(artifacts_list[0])
 
 if __name__ == "__main__":
-    main("Eascen-12475513.json")
+    main(".data/Eascen-12475513.json")
