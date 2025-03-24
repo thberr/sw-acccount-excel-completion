@@ -1,4 +1,4 @@
-from artifact import Artifact
+from models import Artifact
 
 artifact = Artifact(
     artifact_type="Attribute",
