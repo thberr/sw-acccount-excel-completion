@@ -18,3 +18,14 @@ class Artifact:
             f"Sub 3: {self.sub_3} \n"
             f"Sub 4: {self.sub_4} \n"
         )
+    
+    def from_json(json):
+        return Artifact(
+            artifact_type=json["type"],
+            subtype=json["attribute"] if json["type"] == 1 else json["unit_style"],
+            main_stat=json["pri_effect"][0],
+            sub_1=json["sec_effects"][0],
+            sub_2=json["sec_effects"][1],
+            sub_3=json["sec_effects"][2],
+            sub_4=json["sec_effects"][3],
+        )
