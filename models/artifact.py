@@ -43,3 +43,27 @@ class Artifact:
             sub_3=json["sec_effects"][2],
             sub_4=json["sec_effects"][3],
         )
+    
+    def its_case(self, stat, value_min, type, subtype, main_stat):
+        similar_stats = {
+            204: 226,
+            205: 226,
+            209: 225,
+            402: 410,
+            403: 410
+        }
+
+        equivalent_stat = similar_stats.get(stat, stat)
+
+        sub_stats = [self.sub_1, self.sub_2, self.sub_3, self.sub_4]
+        sub_stat_match = any(
+            (sub[0] == equivalent_stat or sub[0] == stat) and sub[1] >= value_min
+            for sub in sub_stats
+        )
+
+        return (
+            sub_stat_match
+            and type == self.artifact_type
+            and subtype == self.subtype
+            and (main_stat == self.main_stat or main_stat == 0)
+        )
