@@ -24,4 +24,4 @@ def artifacts_completion(json_file_path, excel_file_path):
         print(f"Excel file update successful : {excel_file_path}")
 
     except Exception as e:
-        print(f"Eroor during the Excel file update : {e}")
+        print(f"Error during the Excel file update : {e}")

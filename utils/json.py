@@ -18,8 +18,8 @@ def load_artifacts_from_json(json_file_path):
             return artifacts_list
 
     except FileNotFoundError:
-        print(f"Le fichier {json_file_path} n'existe pas.")
+        print(f"The file {json_file_path} doesn't exist.")
         return []
     except json.JSONDecodeError:
-        print(f"Le fichier {json_file_path} n'est pas un JSON valide.")
+        print(f"The file {json_file_path} isn't a valid JSON.")
         return []
