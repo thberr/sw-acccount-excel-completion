@@ -1,1 +1,1 @@
-from .json import load_json
+from .json import load_artifacts_from_json
