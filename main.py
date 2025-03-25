@@ -1,11 +1,7 @@
-from models import Artifact
-from utils import load_artifacts_from_json
+from utils import artifacts_completion
 
-def main(json_file_path):
-
-    artifacts = load_artifacts_from_json(json_file_path)
-    print(artifacts[0])
-
+def main(json_file_path, excel_file_path):
+    artifacts_completion(json_file_path, excel_file_path)
 
 if __name__ == "__main__":
-    main(".data/Eascen-12475513.json")
+    main(".data/Eascen-12475513.json", ".data/Account Progression Suggestion - Eascen.xlsx")
