@@ -314,7 +314,6 @@ excel_cases = {
 
     # Archetype Artifacts : Skill X Recovery +%, ATK Main Stat
 
-    "AH14": {"stat": 405, "value_min": 22, "type": 2, "subtype": 1, "main_stat": 101},
     "AK14": {"stat": 405, "value_min": 22, "type": 2, "subtype": 4, "main_stat": 101},
 
     # --------------------------------------------------------------------------------
