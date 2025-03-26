@@ -1,5 +1,6 @@
 from config import rune
 from models.rune_stat import RuneStat
+from utils.rune import get_main_stat_max_value_6, calculate_eff_stat_rune_6
 
 class Rune:
     def __init__(self, set: int, stars: int, slot: int, main_stat: int, innate: int, innate_value: int, sub_stats: list[RuneStat]):
@@ -44,3 +45,15 @@ class Rune:
             innate_value=json["prefix_eff"][1] if json.get("prefix_eff") and json["prefix_eff"][0] != 0 else None,
             sub_stats=sub_stats,
         )
+    
+    def calculate_rune_efficiency(self) -> float:
+        eff_main = get_main_stat_max_value_6(self.main_stat)/get_main_stat_max_value_6(self.main_stat)
+        eff_innate = 0.0
+        eff_subs = 0.0
+
+        if self.innate:
+            eff_innate = calculate_eff_stat_rune_6(self.innate)
+        for stat in self.sub_stats:
+            eff_subs += calculate_eff_stat_rune_6(stat)
+
+        return ((eff_main + eff_innate + eff_subs) / 2.8) * 100.0

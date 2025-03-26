@@ -1,8 +1,9 @@
-from models.rune_stat import RuneStat
-from utils import calculate_eff_stat_rune_6
+from utils import load_runes_from_json
 
 def main(json_file_path, excel_file_path):
-    print(calculate_eff_stat_rune_6(RuneStat(4, 28, 7)))
+    account = load_runes_from_json(json_file_path)
+
+    print(account[0].calculate_rune_efficiency())
 
 if __name__ == "__main__":
     main(".data/Eascen-12475513.json", ".data/Account Progression Suggestion - Eascen.xlsx")
