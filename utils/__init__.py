@@ -1,2 +1,3 @@
 from .json import load_artifacts_from_json, load_runes_from_json
 from .excel import artifacts_completion, giant_speed_completion
+from .rune import get_main_stat_max_value_5, get_main_stat_max_value_6, calculate_eff_stat_rune_6
