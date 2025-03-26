@@ -2,21 +2,21 @@ from config import rune
 from models.rune_stat import RuneStat
 
 class Rune:
-    def __init__(self, set, stars, slot, main_stat, innate, innate_value, sub_stats):
+    def __init__(self, set: int, stars: int, slot: int, main_stat: int, innate: int, innate_value: int, sub_stats: list[RuneStat]):
         self.set = set
         self.stars = stars
         self.slot = slot
         self.main_stat = main_stat
-        self.innate = {'stat': innate, 'value': innate_value}
-        self.subs = [RuneStat(sub['stat'], sub['value'], sub['grind']) for sub in sub_stats]
+        self.innate = RuneStat(innate, innate_value) if innate is not None else None
+        self.sub_stats = sub_stats
 
 
     def __repr__(self):
         rune_set = rune['set'][self.set]
         main_stat = rune['stat'][self.main_stat]
-        innate_stat = rune['stat'][self.innate['stat']] if self.innate['stat'] else "None"
+        innate_stat = rune['stat'][self.innate.stat_id] if self.innate else "None"
         sub_stats_str = "\n".join(
-            f"{sub}" for sub in self.subs
+            f"{sub}" for sub in self.sub_stats
         )
 
         return (
@@ -24,14 +24,14 @@ class Rune:
             f"{self.stars}⭐\n"
             f"Slot: {self.slot}\n"
             f"Main Stat: {main_stat}\n"
-            f"Innate: {innate_stat} - Value: {self.innate['value']}\n"
+            f"Innate: {innate_stat} - Value: {self.innate.value}\n"
             f"Sub Stats:\n{sub_stats_str}"
         )
     
     def from_json(json):
         # stat[2] is 1 if the stat was gemmed, or 0 if not
         sub_stats = [
-            {'stat': stat[0], 'value': stat[1], 'grind': stat[3]}
+            RuneStat(stat[0], stat[1], stat[3])
             for stat in json.get('sec_eff', [])
         ]
 
