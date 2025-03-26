@@ -1,8 +1,9 @@
 from config import rune
 
 class Rune:
-    def __init__(self, set, slot, main_stat, innate, innate_value, sub_stats):
+    def __init__(self, set, stars, slot, main_stat, innate, innate_value, sub_stats):
         self.set = set
+        self.stars = stars
         self.slot = slot
         self.main_stat = main_stat
         self.innate = {'stat': innate, 'value': innate_value}
@@ -22,6 +23,7 @@ class Rune:
 
         return (
             f"Set: {rune_set}\n"
+            f"{self.stars}⭐\n"
             f"Slot: {self.slot}\n"
             f"Main Stat: {main_stat}\n"
             f"Innate: {innate_stat} - Value: {self.innate['value']}\n"
@@ -37,6 +39,7 @@ class Rune:
 
         return Rune(
             set=json['set_id'],
+            stars=json['class'],
             slot=json['slot_no'],
             main_stat=json['pri_eff'][0],
             innate=json["prefix_eff"][0] if json.get("prefix_eff") and json["prefix_eff"][0] != 0 else None,
