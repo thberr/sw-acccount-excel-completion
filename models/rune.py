@@ -56,4 +56,4 @@ class Rune:
         for stat in self.sub_stats:
             eff_subs += calculate_eff_stat_rune_6(stat)
 
-        return ((eff_main + eff_innate + eff_subs) / 2.8) * 100.0
+        return round(((eff_main + eff_innate + eff_subs) / 2.8) * 100.0, 2)
