@@ -1,4 +1,5 @@
 from config import rune
+from models.rune_stat import RuneStat
 
 class Rune:
     def __init__(self, set, stars, slot, main_stat, innate, innate_value, sub_stats):
@@ -7,18 +8,15 @@ class Rune:
         self.slot = slot
         self.main_stat = main_stat
         self.innate = {'stat': innate, 'value': innate_value}
-        self.subs = {
-            f'sub_{i+1}': {'stat': sub_stats[i]['stat'], 'value': sub_stats[i]['value'], 'grind': sub_stats[i]['grind']}
-            for i in range(len(sub_stats))
-        }
+        self.subs = [RuneStat(sub['stat'], sub['value'], sub['grind']) for sub in sub_stats]
+
 
     def __repr__(self):
         rune_set = rune['set'][self.set]
         main_stat = rune['stat'][self.main_stat]
         innate_stat = rune['stat'][self.innate['stat']] if self.innate['stat'] else "None"
         sub_stats_str = "\n".join(
-            f"Sub {i+1}: {rune['stat'][sub['stat']]} - Value: {sub['value']} - Grind: {sub['grind']}"
-            for i, sub in enumerate(self.subs.values())
+            f"{sub}" for sub in self.subs
         )
 
         return (
