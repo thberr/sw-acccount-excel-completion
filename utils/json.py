@@ -1,7 +1,7 @@
 import json
 from models import Artifact, Rune
 
-def load_artifacts_from_json(json_file_path):
+def load_artifacts_from_json(json_file_path) -> list[Artifact]:
     try:
         with open(json_file_path, 'r', encoding='utf-8') as json_file:
             account = json.load(json_file)
@@ -24,12 +24,12 @@ def load_artifacts_from_json(json_file_path):
         print(f"The file {json_file_path} isn't a valid JSON.")
         return []
     
-def load_runes_from_json(json_file_path):
+def load_runes_from_json(json_file_path) -> list[Rune]:
     try:
         with open(json_file_path, 'r', encoding='utf-8') as json_file:
             account = json.load(json_file)
 
-            runes_list = []
+            runes_list: list[Rune] = []
 
             for monster in account.get("unit_list", []):
                 for rune in monster.get("runes", []):

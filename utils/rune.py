@@ -1,6 +1,6 @@
 from models.rune_stat import RuneStat
 
-def get_max_value_sub_stat_6(stat_id):
+def get_max_value_sub_stat_6(stat_id) -> int:
     match stat_id:
         case 1: return 750
         case 2 | 4 | 6 | 11 | 12: return 8
@@ -9,7 +9,7 @@ def get_max_value_sub_stat_6(stat_id):
         case 10: return 7
         case _: return 0
 
-def get_main_stat_max_value_5(stat_id):
+def get_main_stat_max_value_5(stat_id) -> int:
     match stat_id:
         case 1: return 2088
         case 2: return 51
@@ -24,7 +24,7 @@ def get_main_stat_max_value_5(stat_id):
         case 11: return 51
         case _: return 0
 
-def get_main_stat_max_value_6(stat_id):
+def get_main_stat_max_value_6(stat_id) -> int:
     match stat_id:
         case 1: return 2448
         case 2: return 63
@@ -39,7 +39,7 @@ def get_main_stat_max_value_6(stat_id):
         case 11: return 64
         case _: return 0
 
-def calculate_eff_stat_rune_6(stat: RuneStat):
+def calculate_eff_stat_rune_6(stat: RuneStat) -> float:
     stat_max_value = get_max_value_sub_stat_6(stat.stat_id)
     stat_total_value = stat.value + stat.grind
     
